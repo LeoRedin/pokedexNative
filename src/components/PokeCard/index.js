@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import {Text} from '@ui-kitten/components';
 
 import {convertToPokemonId} from '../../utils/utils';
@@ -42,9 +42,16 @@ function PokeCard({
   name = 'Charmander',
   types = [{type: {name: 'fire'}}],
   image,
+  navigation,
 }) {
   return (
-    <View style={CONTAINER(types)}>
+    <TouchableOpacity
+      style={CONTAINER(types)}
+      onPress={() =>
+        navigation.navigate('Pokemon', {
+          pokemonId: id,
+        })
+      }>
       <Text style={ID}>{convertToPokemonId(id)}</Text>
       <Text style={NAME}>{name}</Text>
       <View>
@@ -57,7 +64,7 @@ function PokeCard({
       <View style={IMAGE}>
         <Text>Imagem do Poke</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

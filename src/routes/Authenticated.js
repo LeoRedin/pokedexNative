@@ -2,14 +2,15 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {Home} from '../screens';
+import {Home, Pokemon} from '../screens';
 
 const {Navigator, Screen} = createStackNavigator();
 
-function NonAuthenticatedNavigator() {
+function AuthenticatedNavigator() {
   return (
     <Navigator headerMode="none">
       <Screen name="Home" component={Home} />
+      <Screen name="Pokemon" component={Pokemon} />
     </Navigator>
   );
 }
@@ -17,7 +18,7 @@ function NonAuthenticatedNavigator() {
 function AuthenticatedApp() {
   return (
     <NavigationContainer>
-      <NonAuthenticatedNavigator />
+      <AuthenticatedNavigator />
     </NavigationContainer>
   );
 }
