@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, FlatList} from 'react-native';
+import {View, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import {Layout, Button, Text} from '@ui-kitten/components';
 
 import useAuthStore from '../../stores/auth';
@@ -43,6 +43,17 @@ function Home({navigation}) {
 
   const {logout} = useAuthStore();
 
+  const renderItem = ({item}) => (
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Pokemon', {
+          pokemonId: item.id,
+        })
+      }>
+      <PokeCard {...item} />
+    </TouchableOpacity>
+  );
+
   return (
     <Layout style={LAYOUT}>
       {loading ? (
@@ -53,15 +64,11 @@ function Home({navigation}) {
         <FlatList
           data={pokemons}
           keyExtractor={(pokemon) => pokemon.id}
-          renderItem={(item) => renderItem(item, navigation)}
+          renderItem={renderItem}
         />
       )}
     </Layout>
   );
-}
-
-function renderItem(item, navigation) {
-  return <PokeCard {...item} navigation={navigation} />;
 }
 
 export {Home};

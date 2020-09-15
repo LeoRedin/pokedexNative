@@ -45,13 +45,7 @@ function PokeCard({
   navigation,
 }) {
   return (
-    <TouchableOpacity
-      style={CONTAINER(types)}
-      onPress={() =>
-        navigation.navigate('Pokemon', {
-          pokemonId: id,
-        })
-      }>
+    <View style={CONTAINER(types)}>
       <Text style={ID}>{convertToPokemonId(id)}</Text>
       <Text style={NAME}>{name}</Text>
       <View>
@@ -64,7 +58,7 @@ function PokeCard({
       <View style={IMAGE}>
         <Text>Imagem do Poke</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
